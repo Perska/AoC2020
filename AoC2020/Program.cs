@@ -12,7 +12,7 @@ namespace AoC2020
 
 		public static List<DayProgram> days = new List<DayProgram>
 		{
-			Day1, Day2, Day3
+			Day1, Day2, Day3, Day4
 		};
 
 		static void Main()
@@ -49,7 +49,7 @@ namespace AoC2020
 							if (line.ToLowerInvariant().StartsWith("end")) break;
 							input.Add(line);
 						}
-						input.RemoveAll(item => item.Length == 0);
+						//input.RemoveAll(item => item.Length == 0);
 						program(input);
 					}
 				}
