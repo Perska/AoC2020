@@ -24,7 +24,6 @@ namespace AoC2020
 				"pid",
 			};
 			bool[] correct = new bool[requiredFields.Length];
-			input.Add("");
 			int validPassports = 0;
 			foreach (string line in input)
 			{

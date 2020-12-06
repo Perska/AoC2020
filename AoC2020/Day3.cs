@@ -10,6 +10,7 @@ namespace AoC2020
 	{
 		static void Day3(List<string> input)
 		{
+			input.RemoveAll(item => item.Length == 0);
 			Console.WriteLine($"Part 1: Found {CountTrees(3, 1)} trees.");
 
 			List<Tuple<int, int>> slopes = new List<Tuple<int, int>>

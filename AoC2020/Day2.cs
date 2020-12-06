@@ -15,6 +15,7 @@ namespace AoC2020
 			List<string> validPasswords2 = new List<string>();
 			foreach (string password in input)
 			{
+				if (password == "") continue;
 				Match match = Regex.Match(password, "([0-9]+)+-([0-9]+) (.): (.+)", RegexOptions.Compiled);
 				if (match.Success)
 				{
