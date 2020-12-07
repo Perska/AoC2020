@@ -75,11 +75,7 @@ namespace AoC2020
 				{
 					if (item == "no other") continue;
 					int bagM = item[0] - '0';
-					bags += (ulong)bagM;
-					for (int i = 0; i < bagM; i++)
-					{
-						bags += CountBags(rules, item.Substring(2), cache);
-					}
+					bags += (ulong)bagM + (ulong)bagM * CountBags(rules, item.Substring(2), cache);
 				}
 				if (cache != null)
 				{
