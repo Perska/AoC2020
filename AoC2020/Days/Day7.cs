@@ -11,6 +11,9 @@ namespace AoC2020
 		static void Day7(List<string> input)
 		{
 			Dictionary<string, List<string>> rules = new Dictionary<string, List<string>>();
+			Dictionary<string, int> extra = new Dictionary<string, int>();
+			Dictionary<string, ulong> extra2 = new Dictionary<string, ulong>();
+			Dictionary<string, ulong> allBags = new Dictionary<string, ulong>();
 			foreach (string rule in input)
 			{
 				if (rule == "") continue;
@@ -21,10 +24,31 @@ namespace AoC2020
 			int count = 0;
 			foreach (var item in rules)
 			{
-				if (BagContains(rules, item.Key, "shiny gold")) count++;
+				if (BagContains(rules, item.Key, "shiny gold"))
+				{
+					count++;
+					extra[item.Key] = 0;
+				}
+				allBags[item.Key] = 0;
 			}
 			Console.WriteLine(count);
 			Console.WriteLine(CountBags(rules,"shiny gold"));
+
+			/* EXTRA: */
+			List<int> bagCounts = new List<int>();
+			foreach (var item in extra)
+			{
+				extra2[item.Key] = CountBags(rules, item.Key, extra2);
+			}
+			ulong biggestBag = extra2.Max(item => item.Value);
+			Console.WriteLine($"\nExtra:\nMax bag count in bags that had a shiny gold bag is {biggestBag} in a {extra2.First(item => item.Value == biggestBag).Key} bag.");
+			foreach (var item in allBags)
+			{
+				extra2[item.Key] = CountBags(rules, item.Key, extra2);
+				//Console.WriteLine($"{item.Key}: {extra2[item.Key]} bags");
+			}
+			biggestBag = extra2.Max(item => item.Value);
+			Console.WriteLine($"And max bag count with every bag is {biggestBag} in a {extra2.First(item => item.Value == biggestBag).Key} bag.");
 		}
 
 		static bool BagContains(Dictionary<string, List<string>> rules, string bag, string targetBag)
@@ -38,17 +62,28 @@ namespace AoC2020
 			return false;
 		}
 
-		static int CountBags(Dictionary<string, List<string>> rules, string bag)
+		static ulong CountBags(Dictionary<string, List<string>> rules, string bag, Dictionary<string, ulong> cache = null)
 		{
-			int bags = 0;
-			foreach (var item in rules[bag])
+			ulong bags = 0;
+			if (cache != null && cache.ContainsKey(bag))
 			{
-				if (item == "no other") continue;
-				int bagM = item[0] - '0';
-				bags+=bagM;
-				for (int i = 0; i < bagM; i++)
+				bags = cache[bag];
+			}
+			else
+			{
+				foreach (var item in rules[bag])
 				{
-					bags += CountBags(rules, item.Substring(2));
+					if (item == "no other") continue;
+					int bagM = item[0] - '0';
+					bags += (ulong)bagM;
+					for (int i = 0; i < bagM; i++)
+					{
+						bags += CountBags(rules, item.Substring(2), cache);
+					}
+				}
+				if (cache != null)
+				{
+					cache[bag] = bags;
 				}
 			}
 			return bags;
