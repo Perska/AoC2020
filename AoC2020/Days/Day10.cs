@@ -49,50 +49,28 @@ namespace AoC2020
 			Console.WriteLine(joltage);
 			Console.WriteLine(joltDiff.Count(item => item == 1));
 			Console.WriteLine(joltDiff.Count(item => item == 3));
+			int targetJolt = joltage;
 			Console.WriteLine(joltDiff.Count(item => item == 1) * joltDiff.Count(item => item == 3));
-
-
-			Console.WriteLine("Screw this, I'm out!");
-			/*joltage = 0;
-			canIncrement = true;
-
-			List<int> tree = new List<int>();
-			for (int k = 0; k < jolts.Count; k++)
+			
+			Dictionary<int, long> cache = new Dictionary<int, long>();
+			jolts.Add(targetJolt);
+			Console.WriteLine(CountPaths(0));
+			
+			long CountPaths(int jolt)
 			{
-				List<int> perTree = new List<int>();
-				int i;
-				for (i = 0; i < permittedAdapt.Length; i++)
+				if (jolt == targetJolt) return 1;
+				long res = 0;
+				if (cache.ContainsKey(jolt)) return cache[jolt];
+				for (int i = 0; i < permittedAdapt.Length; i++)
 				{
-					if (k == 0)
+					if (jolts.Contains(jolt + permittedAdapt[i]))
 					{
-						if (jolts.Contains(joltage + permittedAdapt[i]))
-						{
-							joltage += permittedAdapt[i];
-							perTree.Add(joltage);
-							if (i == permittedAdapt.Length - 1) break;
-						}
-					}
-					else
-					{
-						for (int j = 0; j < tree.Count; j++)
-						{
-							joltage = tree[j];
-							
-							if (jolts.Contains(joltage + permittedAdapt[i]))
-							{
-								joltage += permittedAdapt[i];
-								perTree.Add(joltage);
-								if (i == permittedAdapt.Length - 1) break;
-							}
-						}
+						res += CountPaths(jolt + permittedAdapt[i]);
 					}
 				}
-				tree.AddRange(perTree);
+				cache[jolt] = res;
+				return res;
 			}
-			Console.WriteLine(tree.Count)
-			;
-			Console.ReadLine();
-			;*/
 		}
 	}
 }
