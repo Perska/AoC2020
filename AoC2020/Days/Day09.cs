@@ -8,7 +8,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day9(List<string> input)
+		static void Day09(List<string> input)
 		{
 			List<long> numbers = new List<long>();
 			foreach (var item in input)

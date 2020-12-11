@@ -8,7 +8,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day3(List<string> input)
+		static void Day03(List<string> input)
 		{
 			input.RemoveAll(item => item.Length == 0);
 			Console.WriteLine($"Part 1: Found {CountTrees(3, 1)} trees.");

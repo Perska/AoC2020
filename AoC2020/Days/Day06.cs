@@ -8,7 +8,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day6(List<string> input)
+		static void Day06(List<string> input)
 		{
 			int[] answered = new int[26];
 			int sums = 0, sums2 = 0, ppl = 0;

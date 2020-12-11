@@ -8,7 +8,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day1(List<string> input)
+		static void Day01(List<string> input)
 		{
 			const int sum = 2020;
 			List<int> numbers = new List<int>();

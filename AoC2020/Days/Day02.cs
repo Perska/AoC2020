@@ -9,7 +9,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day2(List<string> input)
+		static void Day02(List<string> input)
 		{
 			List<string> validPasswords = new List<string>();
 			List<string> validPasswords2 = new List<string>();

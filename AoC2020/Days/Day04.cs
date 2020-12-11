@@ -9,7 +9,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day4(List<string> input)
+		static void Day04(List<string> input)
 		{
 			Dictionary<string,string> fields = new Dictionary<string, string>();
 			List<Dictionary<string, string>> passports = new List<Dictionary<string, string>>();

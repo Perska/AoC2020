@@ -8,7 +8,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day7(List<string> input)
+		static void Day07(List<string> input)
 		{
 			Dictionary<string, List<string>> rules = new Dictionary<string, List<string>>();
 			Dictionary<string, int> extra = new Dictionary<string, int>();

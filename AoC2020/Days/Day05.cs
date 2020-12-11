@@ -8,7 +8,7 @@ namespace AoC2020
 {
 	partial class Program
 	{
-		static void Day5(List<string> input)
+		static void Day05(List<string> input)
 		{
 			List<Tuple<int, int, int>> passes = new List<Tuple<int, int, int>>();
 			Tuple<int, int, int>[] passArr = new Tuple<int, int, int>[1024];

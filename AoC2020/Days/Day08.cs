@@ -106,7 +106,7 @@ namespace AoC2020
 			}
 		}
 
-		static void Day8(List<string> input)
+		static void Day08(List<string> input)
 		{
 			VirtualMachine vm = new VirtualMachine(input);
 

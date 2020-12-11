@@ -12,8 +12,8 @@ namespace AoC2020
 
 		public static List<DayProgram> days = new List<DayProgram>
 		{
-			Day1, Day2, Day3, Day4, Day5, Day6, Day7,
-			Day8, Day9, Day10
+			Day01, Day02, Day03, Day04, Day05, Day06, Day07,
+			Day08, Day09, Day10, Day11
 		};
 
 		static void Main()
