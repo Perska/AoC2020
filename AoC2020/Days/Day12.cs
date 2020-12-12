@@ -10,31 +10,40 @@ namespace AoC2020
 	{
 		static void Day12(List<string> input)
 		{
-			int x = 0, y = 0, rot = 0;
-			// 0 : east
+			int x = 0, y = 0;
+			int x2 = 0, y2 = 0;
+			int x3 = 10, y3 = -1;
+			int rot = 0, rot2 = 0;
 			foreach (var item in input)
 			{
 				if (item != "")
 				{
+					rot2 = 0;
 					switch (item[0])
 					{
 						case 'N':
 							y -= num(item);
+							y3 -= num(item);
 							break;
 						case 'E':
 							x += num(item);
+							x3 += num(item);
 							break;
 						case 'S':
 							y += num(item);
+							y3 += num(item);
 							break;
 						case 'W':
 							x -= num(item);
+							x3 -= num(item);
 							break;
 						case 'L':
 							rot = (rot + 4 - (num(item) / 90)) % 4;
+							rot2 = (4 - (num(item) / 90)) % 4;
 							break;
 						case 'R':
 							rot = (rot + (num(item) / 90)) % 4;
+							rot2 = ((num(item) / 90)) % 4;
 							break;
 						case 'F':
 							if (rot == 0)
@@ -53,64 +62,24 @@ namespace AoC2020
 							{
 								y -= num(item);
 							}
+							x2 += x3 * num(item);
+							y2 += y3 * num(item);
 							break;
 						default:
 							break;
+					}
+
+					for (int i = 0; i < rot2; i++)
+					{
+						int ox = x3;
+						x3 = -y3;
+						y3 = ox;
 					}
 				}
 			}
 
 			Console.WriteLine($"{Math.Abs(x) + Math.Abs(y)}");
-
-			x = 0;
-			y = 0;
-			rot = 0;
-			int x2 = 10, y2 = -1;
-
-			foreach (var item in input)
-			{
-				if (item != "")
-				{
-					rot = 0;
-					switch (item[0])
-					{
-						case 'N':
-							y2 -= num(item);
-							break;
-						case 'E':
-							x2 += num(item);
-							break;
-						case 'S':
-							y2 += num(item);
-							break;
-						case 'W':
-							x2 -= num(item);
-							break;
-						case 'L':
-							rot = (4 - (num(item) / 90)) % 4;
-							break;
-						case 'R':
-							rot = ((num(item) / 90)) % 4;
-							break;
-						case 'F':
-							x += x2 * num(item);
-							y += y2 * num(item);
-							break;
-						default:
-							break;
-					}
-					for (int i = 0; i < rot; i++)
-					{
-						int ox = x2;
-						x2 = -y2;
-						y2 = ox;
-					}
-				}
-
-			}
-
-
-			Console.WriteLine($"{Math.Abs(x) + Math.Abs(y)}");
+			Console.WriteLine($"{Math.Abs(x2) + Math.Abs(y2)}");
 
 			int num(string it)
 			{
