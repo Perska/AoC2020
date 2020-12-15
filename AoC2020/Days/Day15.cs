@@ -10,15 +10,15 @@ namespace AoC2020
 	{
 		static void Day15(List<string> input)
 		{
-			List<long> numbers = new List<long>();
-			Dictionary<long,long> saidNumbers = new Dictionary<long,long>();
+			List<int> numbers = new List<int>();
+			Dictionary<int,int> saidNumbers = new Dictionary<int,int>();
 			foreach (var item in input[0].Split(','))
 			{
 				if (item != "" && int.TryParse(item, out int res)) numbers.Add(res);
 			}
-			long lastNum = -1;
-			long turn = 1;
-			long firstTime = 0;
+			int lastNum = -1;
+			int turn = 1;
+			int firstTime = 0;
 			foreach (var item in numbers)
 			{
 				SayNum(item);
@@ -36,9 +36,7 @@ namespace AoC2020
 				}
 				if (turn == 2021) Console.WriteLine(lastNum);
 			}
-			Console.WriteLine(lastNum);
-
-			void SayNum(long num)
+			void SayNum(int num)
 			{
 				lastNum = num;
 				saidNumbers.TryGetValue(num, out firstTime);
