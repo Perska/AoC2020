@@ -23,20 +23,6 @@ namespace AoC2020
 			{
 				SayNum(item);
 			}
-			while (turn <= 2020)
-			{
-				if (firstTime == 0)
-				{
-					SayNum(0);
-				}
-				else
-				{
-					//Console.WriteLine($"{saidNumbers[lastNum]} - {firstTime} = {saidNumbers[lastNum] - firstTime}!");
-					SayNum(saidNumbers[lastNum] - firstTime);
-				}
-			}
-			Console.WriteLine(lastNum);
-
 			while (turn <= 30000000)
 			{
 				if (firstTime == 0)
@@ -48,6 +34,7 @@ namespace AoC2020
 					//Console.WriteLine($"{saidNumbers[lastNum]} - {firstTime} = {saidNumbers[lastNum] - firstTime}!");
 					SayNum(saidNumbers[lastNum] - firstTime);
 				}
+				if (turn == 2021) Console.WriteLine(lastNum);
 			}
 			Console.WriteLine(lastNum);
 
