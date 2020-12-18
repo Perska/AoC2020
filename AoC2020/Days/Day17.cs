@@ -195,22 +195,10 @@ namespace AoC2020
 				}*/
 				run++;
 				if (run == 6) break;
-				//Console.WriteLine(grid.Count(item => item.Value == '#'));
 
 			}
-			int seats = 0;
-			//int seats2 = 0;
-			/*for (int i = 0; i < seat.Length; i++)
-			{
-				for (int j = 0; j < seat[i].Length; j++)
-				{
-					if (seat[i][j][0] == '#') seats++;
-					//if (seat[i][j][1] == '#') seats2++;
-				}
-			}*/
 			Console.WriteLine(grid.Count(item => item.Value == '#'));
 			Console.WriteLine(grid4.Count(item => item.Value == '#'));
-			//Console.WriteLine(seats2);
 		}
 	}
 }

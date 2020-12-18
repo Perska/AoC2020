@@ -11,7 +11,7 @@ namespace AoC2020
 	{
 		static void Day16(List<string> input)
 		{
-			var rules = new Dictionary<string, Tuple<int, int, int, int>>();
+			var rules = new Dictionary<string, (int, int, int, int)>();
 			var ruleValid = new Dictionary<string, int[]>();
 			var myTicket = new List<int>();
 			var otherTickets = new List<List<int>>();
@@ -23,7 +23,7 @@ namespace AoC2020
 				Match match = Regex.Match(input[i], @"([a-z ]+): (\d+)-(\d+) or (\d+)-(\d+)", RegexOptions.Compiled);
 				if (match.Success)
 				{
-					rules[match.Groups[1].Value] = new Tuple<int, int, int, int>(int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value), int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
+					rules[match.Groups[1].Value] = (int.Parse(match.Groups[2].Value), int.Parse(match.Groups[3].Value), int.Parse(match.Groups[4].Value), int.Parse(match.Groups[5].Value));
 				}
 				//rules[]
 				if (input[i] == "") break;

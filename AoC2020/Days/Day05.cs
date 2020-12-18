@@ -10,8 +10,8 @@ namespace AoC2020
 	{
 		static void Day05(List<string> input)
 		{
-			List<Tuple<int, int, int>> passes = new List<Tuple<int, int, int>>();
-			Tuple<int, int, int>[] passArr = new Tuple<int, int, int>[1024];
+			List<(int, int, int)> passes = new List<(int, int, int)>();
+			(int, int, int)?[] passArr = new (int, int, int)?[1024];
 
 			foreach (string pass in input)
 			{
@@ -25,7 +25,7 @@ namespace AoC2020
 				{
 					if (pass[7 + i] == 'R') row ^= 1 << (2 - i);
 				}
-				passes.Add(new Tuple<int, int, int>(column, row, column * 8 + row));
+				passes.Add((column, row, column * 8 + row));
 				//Console.WriteLine($"{column} {row} {column * 8 + row}");
 			}
 			int minPass = passes.Min(pass => pass.Item3), maxPass = passes.Max(pass => pass.Item3);

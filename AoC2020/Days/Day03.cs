@@ -13,18 +13,18 @@ namespace AoC2020
 			input.RemoveAll(item => item.Length == 0);
 			Console.WriteLine($"Part 1: Found {CountTrees(3, 1)} trees.");
 
-			List<Tuple<int, int>> slopes = new List<Tuple<int, int>>
+			List<(int,int)> slopes = new List<(int,int)>
 			{
-				new Tuple<int, int>(1, 1),
-				new Tuple<int, int>(3, 1),
-				new Tuple<int, int>(5, 1),
-				new Tuple<int, int>(7, 1),
-				new Tuple<int, int>(1, 2),
+				(1, 1),
+				(3, 1),
+				(5, 1),
+				(7, 1),
+				(1, 2),
 			};
 
 			ulong totalTrees = 0;
 
-			foreach (Tuple<int,int> slope in slopes)
+			foreach ((int,int) slope in slopes)
 			{
 				if (totalTrees == 0)
 					totalTrees = CountTrees(slope.Item1, slope.Item2);
