@@ -15,49 +15,49 @@ namespace AoC2020
 			{
 				if (item.Length != 0) _seat.Add(item);
 			}
-			Dictionary<string, char> grid = new Dictionary<string, char>();
-			Dictionary<string, char> grid2 = new Dictionary<string, char>();
-			Dictionary<string, char> grid4 = new Dictionary<string, char>();
-			Dictionary<string, char> grid42 = new Dictionary<string, char>();
+			Dictionary<(int X, int Y, int Z), char> grid = new Dictionary<(int, int, int), char>();
+			Dictionary<(int X, int Y, int Z), char> grid2 = new Dictionary<(int, int, int), char>();
+			Dictionary<(int X, int Y, int Z, int W), char> grid4 = new Dictionary<(int, int, int, int), char>();
+			Dictionary<(int X, int Y, int Z, int W), char> grid42 = new Dictionary<(int, int, int, int), char>();
 			char seat(int x, int y, int z)
 			{
-				return grid.TryGetValue($"{x},{y},{z}", out char c) ? c : '.';
+				return grid.TryGetValue((x,y,z), out char c) ? c : '.';
 			}
 			void newSeat(int x, int y, int z, char c)
 			{
 				if (c == '.')
 				{
-					grid2.Remove($"{x},{y},{z}");
+					grid2.Remove((x, y, z));
 				}
 				else
 				{
-					grid2[$"{x},{y},{z}"] = c;
+					grid2[(x, y, z)] = c;
 				}
 			}
 
 			void setseat(int x, int y, int z, char c)
 			{
-				grid[$"{x},{y},{z}"] = c;
+				grid[(x, y, z)] = c;
 			}
 
 			char seat4(int x, int y, int z, int w)
 			{
-				return grid4.TryGetValue($"{x},{y},{z},{w}", out char c) ? c : '.';
+				return grid4.TryGetValue((x, y, z, w), out char c) ? c : '.';
 			}
 			void newSeat4(int x, int y, int z, int w, char c)
 			{
 				if (c == '.')
 				{
-					grid42.Remove($"{x},{y},{z},{w}");
+					grid42.Remove((x, y, z, w));
 				}
 				else
 				{
-					grid42[$"{x},{y},{z},{w}"] = c;
+					grid42[(x, y, z, w)] = c;
 				}
 			}
 			void setseat4(int x, int y, int z, int w, char c)
 			{
-				grid4[$"{x},{y},{z},{w}"] = c;
+				grid4[(x, y, z, w)] = c;
 			}
 
 
@@ -72,12 +72,13 @@ namespace AoC2020
 			int run = 0;
 			while (true)
 			{
-				int minx = grid.Keys.Min(item => int.Parse(item.Split(',')[0])) - 1;
-				int miny = grid.Keys.Min(item => int.Parse(item.Split(',')[1])) - 1;
-				int minz = grid.Keys.Min(item => int.Parse(item.Split(',')[2])) - 1;
-				int maxx = grid.Keys.Max(item => int.Parse(item.Split(',')[0])) + 1;
-				int maxy = grid.Keys.Max(item => int.Parse(item.Split(',')[1])) + 1;
-				int maxz = grid.Keys.Max(item => int.Parse(item.Split(',')[2])) + 1;
+				int minx = grid.Keys.Min(item => item.X) - 1;
+				int miny = grid.Keys.Min(item => item.Y) - 1;
+				int minz = grid.Keys.Min(item => item.Z) - 1;
+				int maxx = grid.Keys.Max(item => item.X) + 1;
+				int maxy = grid.Keys.Max(item => item.Y) + 1;
+				int maxz = grid.Keys.Max(item => item.Z) + 1;
+				int minw, maxw;
 
 				for (int i = minx; i <= maxx; i++)
 				{
@@ -118,14 +119,14 @@ namespace AoC2020
 					}
 				}
 
-				minx = grid4.Keys.Min(item => int.Parse(item.Split(',')[0])) - 1;
-				miny = grid4.Keys.Min(item => int.Parse(item.Split(',')[1])) - 1;
-				minz = grid4.Keys.Min(item => int.Parse(item.Split(',')[2])) - 1;
-				int minw = grid4.Keys.Min(item => int.Parse(item.Split(',')[3])) - 1;
-				maxx = grid4.Keys.Max(item => int.Parse(item.Split(',')[0])) + 1;
-				maxy = grid4.Keys.Max(item => int.Parse(item.Split(',')[1])) + 1;
-				maxz = grid4.Keys.Max(item => int.Parse(item.Split(',')[2])) + 1;
-				int maxw = grid4.Keys.Max(item => int.Parse(item.Split(',')[3])) + 1;
+				minx = grid4.Keys.Min(item => item.X) - 1;
+				miny = grid4.Keys.Min(item => item.Y) - 1;
+				minz = grid4.Keys.Min(item => item.Z) - 1;
+				minw = grid4.Keys.Min(item => item.W) - 1;
+				maxx = grid4.Keys.Max(item => item.X) + 1;
+				maxy = grid4.Keys.Max(item => item.Y) + 1;
+				maxz = grid4.Keys.Max(item => item.Z) + 1;
+				maxw = grid4.Keys.Max(item => item.W) + 1;
 
 				for (int i = minx; i <= maxx; i++)
 				{
@@ -176,9 +177,9 @@ namespace AoC2020
 				grid = grid2;
 				grid2 = swap;
 				grid2.Clear();
-				swap = grid4;
+				var swap2 = grid4;
 				grid4 = grid42;
-				grid42 = swap;
+				grid42 = swap2;
 				grid42.Clear();
 				/*for (int z = minz; z <= maxz; z++)
 				{
