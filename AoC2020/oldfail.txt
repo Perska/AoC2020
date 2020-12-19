@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+namespace AoC2020
+{
+	partial class Program
+	{
+		static void Day19(List<string> input)
+		{
+			Dictionary<int, string> rules = new Dictionary<int, string>();
+			Dictionary<int, string> rulesParsed = new Dictionary<int, string>();
+
+			foreach (var item in input)
+			{
+				if (item!="")
+					rules[int.Parse(item.Split(':')[0])] = item.Split(':')[1].Substring(1);
+			}
+
+			string regexStr = ValidMessages(0);
+			;
+
+			foreach (var item in rulesParsed[0])
+			{
+				Console.WriteLine(item);
+			}
+			string ValidMessages(int ID)
+			{
+				string accept = "";
+				string rule = rules[ID];
+				if (rulesParsed.ContainsKey(ID))
+				{
+					return rulesParsed[ID];
+				}
+				if (rule.StartsWith("\""))
+				{
+					accept = rules[ID].Split('"')[1];
+				}
+				else
+				{
+					string[] subrule = rule.Split('|');
+					for (int i = 0; i < subrule.Length; i++)
+					{
+						List<string> aaa = new List<string>();
+						string[] subsubrule = subrule[i].Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
+						foreach (string subitem in subsubrule)
+						{
+
+						}
+					}
+				}
+				rulesParsed[ID] = accept;
+				return accept;
+			}
+		}
+
+	}
+}
