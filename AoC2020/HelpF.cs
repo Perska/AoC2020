@@ -6,6 +6,9 @@ using System.Threading.Tasks;
 
 namespace AoC2020
 {
+	/// <summary>
+	/// This class contains code not written by me.
+	/// </summary>
 	static class HelpF
 	{
 		/// <summary>
@@ -36,6 +39,31 @@ namespace AoC2020
 				from chr in "01"  // char sequence equivalent to: new [] { '0', 'o' }
 				from recSuffix in recursiveCombinations
 				select prefix + chr + recSuffix;
+		}
+
+		/// <summary>
+		/// Rotates an array by 90 degrees.
+		/// Modified to be generic and automatically get the array dimension size.
+		/// https://stackoverflow.com/a/42535
+		/// </summary>
+		/// <typeparam name="T"></typeparam>
+		/// <param name="matrix"></param>
+		/// <returns></returns>
+		public static T[,] RotateMatrix<T>(T[,] matrix)
+		{
+			int n = matrix.GetLength(0);
+			if (matrix.GetLength(0) != matrix.GetLength(1)) throw new ArgumentException();
+			T[,] ret = new T[n, n];
+
+			for (int i = 0; i < n; ++i)
+			{
+				for (int j = 0; j < n; ++j)
+				{
+					ret[j, i] = matrix[i, n - j - 1];
+				}
+			}
+
+			return ret;
 		}
 	}
 }
