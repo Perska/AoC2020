@@ -72,26 +72,18 @@ namespace AoC2020
 			char key;
 			StringBuilder input = new StringBuilder();
 			int x = Console.CursorLeft, y = Console.CursorTop;
-			while ((key = Console.ReadKey(true).KeyChar) != 13)
+			while ((key = Console.ReadKey().KeyChar) != 13)
 			{
 				if (key == 8 && input.Length > 0)
 				{
 					input.Remove(input.Length - 1, 1);
+					Console.SetCursorPosition((x + input.Length) % Console.BufferWidth, y + (x + input.Length) / Console.BufferWidth);
+					Console.Write('\0');
+					Console.SetCursorPosition((x + input.Length) % Console.BufferWidth, y + (x + input.Length) / Console.BufferWidth);
 				}
 				else if (key != 8)
 				{
 					input.Append(key);
-				}
-				if (key == 8)
-				{
-					Console.SetCursorPosition((x + Math.Max(input.Length - 1, 0)) % Console.BufferWidth, y + (x + Math.Max(input.Length - 1, 0)) / Console.BufferWidth);
-					Console.Write(input.ToString().LastOrDefault().ToString() + '\0');
-					Console.SetCursorPosition((x + input.Length) % Console.BufferWidth, y + (x + input.Length) / Console.BufferWidth);
-				}
-				else
-				{
-					Console.Write(key);
-					//Console.SetCursorPosition((x + input.Length) % Console.BufferWidth, y + (x + input.Length) / Console.BufferWidth);
 				}
 			}
 			Console.SetCursorPosition(0, y + (x + input.Length) / Console.BufferWidth + 1);
