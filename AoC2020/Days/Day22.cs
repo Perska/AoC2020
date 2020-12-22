@@ -58,7 +58,7 @@ namespace AoC2020
 				score += cards[i] * (cards.Count - i);
 				//Console.WriteLine($"{cards[i]} * {(cards.Count - i)}");
 			}
-			Console.WriteLine($"Part 1: {score}");
+			Console.WriteLine($"Part 1: {score} (Player 1 won: {p1Cards.Count != 0})");
 			bool winner;
 			(winner, p1Cards, p2Cards) = RecursiveCombat(p1CardsR2, p2CardsR2);
 
