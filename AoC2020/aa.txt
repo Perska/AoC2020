@@ -1,0 +1,7 @@
+
+				/*for (int i = 0; i < cups.Count; i++)
+				{
+					Console.Write($"{(currentCup == debug.Value ? "(" : " ")}{debug.Value}{(currentCup == debug.Value ? ")" : " ")}");
+					debug = debug.Next ?? cups.First;
+				}
+				Console.WriteLine();*/
