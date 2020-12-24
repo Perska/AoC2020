@@ -12,7 +12,7 @@ namespace AoC2020
 		{
 			LinkedList<int> cups = new LinkedList<int>();
 			LinkedList<int> cups2 = new LinkedList<int>();
-			LinkedListNode<int>[] nodeLoc = new LinkedListNode<int>[input[0].Length];
+			LinkedListNode<int>[] nodeLoc = new LinkedListNode<int>[int.Parse(input[0].Max(item => item - '0').ToString())];
 			LinkedListNode<int>[] nodeLoc2 = new LinkedListNode<int>[1000000];
 			for (int i = 0; i < input[0].Length; i++)
 			{
